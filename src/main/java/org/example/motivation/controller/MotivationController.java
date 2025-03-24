@@ -54,21 +54,29 @@ public class MotivationController {
         System.out.println("=".repeat(40));
     }
 
-    public void del(String cmd) {
+    public void delete(String cmd) {
+        cmd = cmd.replace("?id=", " ");
 
-       int id = Integer.parseInt(cmd.split(" ")[1]) ;
+        int id = Integer.parseInt(cmd.split(" ")[1]);
 
-       for (int i = 0; i <= id; i++) {
-           Motivation motivation = motivations.get(i);
-           if (motivations.get(i).getId() == id) {
-               motivations.remove(i);
-               System.out.printf("%d번 motivation이 삭제되었습니다.\n", id);
-           }
-           if (motivations.get(i).getId() != id) {
-               System.out.printf("%d번 motivation은 존재하지 않습니다.\n", id);
-               return;
-           }
-       }
+        Motivation foundMotivation = null;
+        int foundIndex = -1;
 
+        for (int i = 0; i < motivations.size(); i++) {
+            Motivation motivation = motivations.get(i);
+            if (motivation.getId() == id) {
+                foundMotivation = motivation;
+                foundIndex = i;
+                break;
+            }
+        }
+
+        if (foundMotivation == null) {
+            System.out.println("해당 moti는 없던데????");
+            return;
+        }
+
+        motivations.remove(foundIndex);
+        System.out.println(id + "번 moti 삭제됨");
     }
 }

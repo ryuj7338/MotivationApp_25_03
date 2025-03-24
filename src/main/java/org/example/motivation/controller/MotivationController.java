@@ -79,4 +79,40 @@ public class MotivationController {
         motivations.remove(foundIndex);
         System.out.println(id + "번 moti 삭제됨");
     }
+
+    public void edit(String cmd) {
+        int id = Integer.parseInt(cmd.split(" ")[1]);
+
+        Motivation foundMotivation = founById(id);
+
+        if (foundMotivation == null) {
+            System.out.println("해당 moti는 없던데????");
+        }
+        System.out.println("기존 Body : "+foundMotivation.getBody());
+        System.out.println("기존 Source : "+foundMotivation.getSource());
+
+        String newBody;
+        String newSource;
+        System.out.print("new body : ");
+        String newbody = sc.nextLine().trim();
+        System.out.print("new source : ");
+        String newsource = sc.nextLine().trim();
+
+
+
+
+        foundMotivation.setBody(newBody);
+        foundMotivation.setSource(newSource);
+
+        System.out.println(id + "번 moti 수정됨");
+    }
+
+    private Motivation founById(int id) {
+        for (Motivation motivation : motivations) {
+            if (motivation.getId() == id) {
+                return motivation;
+            }
+        }return null;
+    }
+
 }

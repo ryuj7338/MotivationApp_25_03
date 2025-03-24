@@ -83,7 +83,7 @@ public class MotivationController {
     public void edit(String cmd) {
         int id = Integer.parseInt(cmd.split(" ")[1]);
 
-        Motivation foundMotivation = founById(id);
+        Motivation foundMotivation = foundById(id);
 
         if (foundMotivation == null) {
             System.out.println("해당 moti는 없던데????");
@@ -107,7 +107,7 @@ public class MotivationController {
         System.out.println(id + "번 moti 수정됨");
     }
 
-    private Motivation founById(int id) {
+    private Motivation foundById(int id) {
         for (Motivation motivation : motivations) {
             if (motivation.getId() == id) {
                 return motivation;
